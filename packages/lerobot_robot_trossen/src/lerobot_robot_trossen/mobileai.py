@@ -48,9 +48,7 @@ class MobileAIRobot(Robot):
         )
 
         self.arms = BiWidowXAIFollowerRobot(arms_config)
-        # Imported here rather than at module level: trossen-slate ships Linux wheels only, and
-        # this module is imported by the package __init__, so a top-level import would stop the
-        # WidowX AI follower (which never touches the base) from importing on macOS.
+        # Linux-only; importing at module level breaks the package on macOS.
         from trossen_slate import TrossenSlate
 
         self.base = TrossenSlate()
